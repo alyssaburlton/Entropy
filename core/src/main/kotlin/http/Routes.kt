@@ -6,4 +6,5 @@ object Routes {
     const val BEGIN_SESSION = "/begin-session"
     const val ACHIEVEMENT_COUNT = "/achievement-count"
     const val FINISH_SESSION = "/finish-session"
+    const val JOIN_ROOM = "/join-room"
 }

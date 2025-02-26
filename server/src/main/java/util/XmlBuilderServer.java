@@ -182,22 +182,19 @@ public class XmlBuilderServer implements XmlConstants
 		}
 		else
 		{
-			synchronized (room)
+			if (!room.isFull())
 			{
-				if (!room.isFull())
+				playerNumber = room.attemptToJoinAsPlayer(username, playerNumber);
+				rootElement.setAttribute("PlayerNumber", "" + playerNumber);
+
+				if (room.isFull())
 				{
-					playerNumber = room.addToCurrentPlayers(username, playerNumber);
-					rootElement.setAttribute("PlayerNumber", "" + playerNumber);
-					
-					if (room.isFull())
-					{
-						ServerGlobals.INSTANCE.getRoomStore().addCopy(room);
-					}
+					ServerGlobals.INSTANCE.getRoomStore().addCopy(room);
 				}
-				else
-				{
-					rootElement.setAttribute("RoomFull", "true");
-				}
+			}
+			else
+			{
+				rootElement.setAttribute("RoomFull", "true");
 			}
 		}
 		

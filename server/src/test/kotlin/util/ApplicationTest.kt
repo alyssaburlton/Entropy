@@ -2,6 +2,7 @@ package util
 
 import org.junit.jupiter.api.BeforeEach
 import routes.lobby.LobbyService
+import routes.room.RoomService
 import routes.session.SessionService
 import store.MemoryUserConnectionStore
 import store.RoomStore
@@ -21,5 +22,6 @@ abstract class ApplicationTest : AbstractTest() {
         ServerGlobals.lobbyService =
             LobbyService(ServerGlobals.server, sessionStore, uscStore, roomStore)
         ServerGlobals.sessionService = SessionService(sessionStore, uscStore)
+        ServerGlobals.roomService = RoomService(roomStore)
     }
 }
